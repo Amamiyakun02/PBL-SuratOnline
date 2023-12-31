@@ -41,11 +41,14 @@ $routes->group('user', function ($routes) {
 // Routing kelola surat
 $routes->group('surat', function ($routes) {
     $routes->get('/', 'ArsipController::index');
-    $routes->get('editor', 'ArsipController::create');
+    $routes->get('create', 'ArsipController::create');
     $routes->post('save', 'ArsipController::insert');
-//    $routes->get('daftar-surat', 'ArsipController::list');
+//  $routes->get('daftar-surat', 'ArsipController::list');
     $routes->get('surat-masuk', 'ArsipController::surat_masuk');
     $routes->get('surat-desa/(:num)', 'ArsipController::surat/$1');
+    $routes->get('delete/(:num)', 'ArsipController::delete/$1');
+    $routes->get('download/(:num)', 'ArsipController::SuratToPDF/$1');
+
 });
 
 // Routing kelola kecamatan
@@ -77,11 +80,12 @@ $routes->group('penduduk', function ($routes) {
     $routes->get('edit/(:num)', 'PendudukController::edit/$1');
     $routes->post('update', 'PendudukController::update');
     $routes->get('delete/(:num)', 'PendudukController::delete/$1');
+
 });
 
 
-$routes->group('surat-dinamis', function ($routes) {
-    $routes->get('/', 'Penduduk\HomePendudukController::index');
+$routes->group('surat-online', function ($routes) {
+    $routes->get('/','Penduduk\HomePendudukController::index');
     $routes->get('daftar-surat', 'Penduduk\HomePendudukController::list');
     $routes->get('notif', 'Penduduk\HomePendudukController::notif');
 });

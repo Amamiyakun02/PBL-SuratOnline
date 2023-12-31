@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="card-body">
                                         <a href="<?= base_url('surat/surat-desa/'. $surat['id']); ?>" class="btn btn-info">Lihat</a>
-                                        <a href="#" class="btn btn-danger">Hapus</a>
+                                        <a href="<?= base_url('surat/delete/'. $surat['id']); ?>" class="btn btn-danger">Hapus</a>
                                     </div>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ use App\Models\ArsipModel;
 use App\Models\DesaModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
+use Dompdf\Dompdf;
 class ArsipController extends BaseController
 {
     protected ArsipModel $arsip;
@@ -46,6 +47,7 @@ class ArsipController extends BaseController
         $kop->move(ROOTPATH . 'public/assets/images/kop_surat');
 
         // Simpan informasi ke database (sesuaikan dengan model dan database Anda)
+//        $desa_id =
 
         $newData = [
             'nama_surat' => $this->request->getPost('nama_surat'),
@@ -81,5 +83,33 @@ class ArsipController extends BaseController
         ];
 //        dd($data);
         return view('component/content-surat',$data);
+    }
+
+    public function delete($id)
+    {
+        $this->arsip->delete($id);
+
+        // Redirect atau tindakan lain setelah penghapusan data
+        return redirect()->to('/surat');
+
+    }
+
+    public function SuratToPDF($id = 6){
+        $pdf_convert = new Dompdf();
+        $isi_surat = $this->arsip->find($id);
+        $kop_path = $isi_surat['path_kop_surat'];
+        $imageData = file_get_contents('assets/images/kop_surat/' . $kop_path);
+        $base64Image = base64_encode($imageData);
+        $data = [
+            'kop_surat' => $base64Image,
+            'content' => $isi_surat['content_surat']
+        ];
+
+        $html = view('component/surat-pdf', $data);
+        $pdf_convert->loadHtml($html);
+        $pdf_convert->setPaper('A4', 'portrait');
+        $pdf_convert->render();
+        $filename = 'nama_surat_nama_desa.pdf';
+        $pdf_convert->stream($filename);
     }
 }

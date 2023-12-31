@@ -30,7 +30,7 @@
             <div class="container" style="margin-top: 10px">
                 <div class="d-flex justify-content-center buttons">
                     <button type="button" class="btn btn-secondary">Kembali</button>
-                    <button type="submit" class="btn btn-primary">Edit</button>
+                    <button type="submit" class="btn btn-primary">hapus</button>
                 </div>
             </div>
 

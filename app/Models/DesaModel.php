@@ -37,9 +37,4 @@ class DesaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function penduduk()
-    {
-        return $this->hasMany(PendudukModel::class, 'id_desa', 'id');
-    }
 }

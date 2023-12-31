@@ -8,16 +8,24 @@ class HomePendudukController extends BaseController
 {
     public function index(): string
     {
-        return view('PendudukPage/index');
+        $data = [];
+        $data['title'] = 'Surat Desa';
+
+        return view('PendudukPage/index1',$data);
     }
 
     public function list(): string
     {
-        return view('PendudukPage/list_surat');
+        $data = [];
+        $data['title'] = 'Daftar Surat';
+
+        return view('PendudukPage/list_surat', $data);
     }
 
     public function notif(): string
     {
-        return view('PendudukPage/notification');
+        $data = [];
+        $data['title'] = 'Surat Desa';
+        return view('PendudukPage/notification', $data);
     }
 }

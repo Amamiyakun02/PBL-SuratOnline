@@ -6,13 +6,9 @@
     <title><?= $title; ?></title>
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.css">
 
-<!-- <link rel="stylesheet" href=" base_url('assets/vendors/chartjs/Chart.min.css') ?>"> -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/app.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/fontawesome-6.5.1/css/fontawesome.css"">
-    <!--quill RTE integrate-->
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/quill/quill.snow.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/vendors/quill/quill.bubble.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/fontawesome-6.5.1/css/fontawesome.css">
 
     <!--    <link rel="shortcut icon" href="--><!--assets/images/favicon.svg" type="image/x-icon') ?>">-->
     <script src="<?= base_url('assets/fonts/fontawesome-6.5.1/js/all.js') ?>"></script>
@@ -21,7 +17,6 @@
     <script src="<?= base_url('tinymce/js/tinymce/tinymce.js'); ?>" referrerpolicy="origin"></script>
     <script src="<?= base_url(); ?>js/jquery-3.7.1.min.js"></script>
     <link href="<?= base_url('assets/vendors/DataTables/datatables.min.css'); ?>" rel="stylesheet">
-
     <script>
     // Cek apakah jQuery telah terhubung
         if (window.jQuery) {
@@ -104,7 +99,7 @@
                                 <a href="<?= base_url('surat') ?>">Daftar Surat</a>
                             </li>
                             <li>
-                                <a href="<?= base_url('surat/editor'); ?>">Buat Surat</a>
+                                <a href="<?= base_url('surat/create'); ?>">Buat Surat</a>
                             </li>
                             <li>
                                 <a href="<?= base_url('surat/surat-masuk')?>">Surat Masuk</a>
@@ -134,6 +129,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="<?= base_url('/logout'); ?>" class='sidebar-link'>
+                            <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -151,7 +152,7 @@
                     <li class="dropdown nav-icon">
                         <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
                             <div class="d-lg-inline-block">
-                                <i class="fa-solid fa-bell"></i>
+<!--                                <i class="fa-solid fa-bell"></i>-->
                             </div>
                         </a>
                         <!-- notifications-menu  -->
@@ -189,16 +190,18 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <div class="avatar mr-1">
-                                <img src="<?= base_url(); ?>assets/images/profile/profile-test.jpeg" alt="user">
+<!--                                <img src="--><?php //= base_url(); ?><!--assets/images/profile/profile-test.jpeg" alt="user">-->
+                                <i class="fa-solid fa-user"></i>
                             </div>
+
                             <div class="d-none d-md-block d-lg-inline-block"><?= ucwords(session()->get('username'));?></div>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="<?= base_url(); ?>profil"><i data-feather="user"></i>Profile</a>
-                            <a class="dropdown-item" href="<?= base_url(); ?>setting"><i data-feather="settings"></i>Account</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?= base_url(); ?>logout"><i data-feather="log-out"></i> Logout</a>
-                        </div>
+<!--                        <div class="dropdown-menu dropdown-menu-right">-->
+<!--                            <a class="dropdown-item" href="--><?php //= base_url(); ?><!--profil"><i data-feather="user"></i>Profile</a>-->
+<!--                            <a class="dropdown-item" href="--><?php //= base_url(); ?><!--setting"><i data-feather="settings"></i>Account</a>-->
+<!--                            <div class="dropdown-divider"></div>-->
+<!--                            <a class="dropdown-item" href="--><?php //= base_url(); ?><!--logout"><i data-feather="log-out"></i> Logout</a>-->
+<!--                        </div>-->
                     </li>
                 </ul>
             </div>
@@ -240,7 +243,6 @@
         });
     });
 </script>
-<script src="<?= base_url(); ?>assets/vendors/quill/quill.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/app.js"></script>
 <script src="<?= base_url(); ?>assets/js/pages/dashboard.js"></script>
 <script src="<?= base_url(); ?>assets/js/main.js"></script>

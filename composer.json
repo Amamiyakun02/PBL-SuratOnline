@@ -10,8 +10,9 @@
         "slack": "https://codeigniterchat.slack.com"
     },
     "require": {
-        "php": "^7.4 || ^8.2",
+        "php": "^8.0 || ^8.2",
         "codeigniter4/framework": "^4.0",
+        "dompdf/dompdf": "^2.0",
         "spomky-labs/otphp": "^11.2",
         "twilio/sdk": "^7.12"
     },

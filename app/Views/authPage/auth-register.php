@@ -105,8 +105,7 @@
     </div>
     <script src="<?= base_url(); ?>assets/js/app.js"></script>
     <script src="<?= base_url(); ?>js/jquery-3.7.1.min.js"></script>
-
-    <script src="<?= base_url() ?>assets/js/main.js"></script>
+    <script src="<?= base_url(); ?>assets/js/main.js"></script>
     <script>
         document.getElementById('nomer-hp').addEventListener('input', function(event) {
             let inputValue = event.target.value.replace(/\D/g, ''); // Remove non-numeric characters
