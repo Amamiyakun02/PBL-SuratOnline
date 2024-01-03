@@ -96,20 +96,37 @@ class ArsipController extends BaseController
 
     public function SuratToPDF($id = 6){
         $pdf_convert = new Dompdf();
-        $isi_surat = $this->arsip->find($id);
-        $kop_path = $isi_surat['path_kop_surat'];
+        $arsip = $this->arsip->find($id);
+        $kop_path = $arsip['path_kop_surat'];
         $imageData = file_get_contents('assets/images/kop_surat/' . $kop_path);
         $base64Image = base64_encode($imageData);
         $data = [
             'kop_surat' => $base64Image,
-            'content' => $isi_surat['content_surat']
+            'content' => $arsip['content_surat']
         ];
 
         $html = view('component/surat-pdf', $data);
         $pdf_convert->loadHtml($html);
         $pdf_convert->setPaper('A4', 'portrait');
         $pdf_convert->render();
-        $filename = 'nama_surat_nama_desa.pdf';
+
+        // Mengambil nama surat dan nama desa
+        $nama_surat = $arsip['nama_surat'];
+        $id_desa = $arsip['id_desa'];
+
+        // Menggunakan id_desa untuk mendapatkan nama desa (gantilah dengan cara yang sesuai di aplikasi Anda)
+        $nama_desa = $this->getNamaDesaById($id_desa);
+
+        // Menggabungkan nama surat dan nama desa untuk digunakan sebagai nama file
+        $filename = "$nama_surat - desa $nama_desa.pdf";
+
         $pdf_convert->stream($filename);
     }
+
+// Fungsi untuk mendapatkan nama desa berdasarkan id_desa
+    private function getNamaDesaById($id_desa) {
+         $desa = $this->desa->find($id_desa);
+         return $desa['nama'];
+    }
+
 }

@@ -37,4 +37,9 @@ class DesaModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getNamaDesaById($idDesa)
+    {
+        return $this->where('id', $idDesa)->first()['nama'];
+    }
 }

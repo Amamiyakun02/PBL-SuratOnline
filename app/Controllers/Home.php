@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ArsipModel;
 use App\Models\PendudukModel;
+use App\Models\PengajuanModel;
 use App\Models\UserModel;
 
 class Home extends BaseController
@@ -16,6 +17,7 @@ class Home extends BaseController
         $this->user = new UserModel();
         $this->penduduk = new PendudukModel();
         $this->arsip = new ArsipModel();
+        $this->pengajuan = new PengajuanModel();
     }
     public function index()
     {
@@ -25,11 +27,25 @@ class Home extends BaseController
     {
         $user_id = session()->get('user_id');
         $dataUser = $this->user->find($user_id);
-        $data = [
-            'title' => 'Dashbard',
-            'head' => 'Dashboard',
-            'data_user' => $dataUser
-        ];
-        return view('adminPage/dashboard', $data);
+        if ($dataUser['role'] == 'admin'){
+            $data = [
+                'title' => 'Dashboard',
+                'head' => 'Dashboard',
+                'data_user' => $dataUser,
+                'pengajuan' => $this->pengajuan->dataPengajuan()
+            ];
+
+            return view('adminPage/dashboard', $data);
+        }
+        else{
+            $data = [
+                'title' => 'Dashboard',
+                'head' => 'Dashboard',
+                'data_user' => $dataUser,
+                'pengajuan' => $this->pengajuan->dataPengajuanPerDesa($dataUser['id_desa'])
+
+            ];
+            return view('adminPage/dashboard', $data);
+        }
     }
 }

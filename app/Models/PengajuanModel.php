@@ -36,4 +36,20 @@ class PengajuanModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    public function dataPengajuan()
+    {
+        $this->select('pengajuan.id as pengajuan_id,pengajuan.status_pengajuan,pengajuan.tanggal_pengajuan, pengajuan.id_desa, penduduk.Nama, penduduk.NIK, penduduk.nomor_hp, arsip.id, arsip.nama_surat')
+        ->join('penduduk', 'pengajuan.id_penduduk = penduduk.id')
+        ->join('arsip', 'pengajuan.id_arsip = arsip.id');
+        return $this->get()->getResultArray();
+
+    }
+    public function dataPengajuanPerDesa($id)
+    {
+        $this->select('pengajuan.id as pengajuan_id,pengajuan.status_pengajuan,pengajuan.tanggal_pengajuan, pengajuan.id_desa, penduduk.Nama, penduduk.NIK, penduduk.nomor_hp, arsip.id, arsip.nama_surat')
+        ->join('penduduk', 'pengajuan.id_penduduk = penduduk.id')
+        ->join('arsip', 'pengajuan.id_arsip = arsip.id')->where('pengajuan.id_desa',$id);
+        return $this->get()->getResultArray();
+
+    }
 }

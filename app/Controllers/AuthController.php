@@ -3,11 +3,16 @@
 namespace App\Controllers;
 
 use App\Models\KecamatanModel;
+use App\Models\PendudukModel;
 use App\Models\UserModel;
 use App\Models\DesaModel;
 
 class AuthController extends BaseController
 {
+    public function __construct()
+    {
+        $this->penduduk = new PendudukModel();
+    }
     public function index(): string
     {
         return view('authPage/auth-login');
@@ -79,6 +84,7 @@ class AuthController extends BaseController
                 // Login berhasil
 //                $session->set('user_id', $user['id']);
                 session()->set('isLogin', true);
+                session()->set('user_id', $user['id']);
                 session()->set('username', $user['username']);
                 session()->set('password', $user['password']);
                 session()->set('role', $user['role']);
@@ -88,43 +94,109 @@ class AuthController extends BaseController
                 return redirect()->back()->withInput();
             }
         }
-        // Validate reCAPTCHA
-        // $recaptcha = $this->request->getVar('g-recaptcha-response');
-        // $recaptchaResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=" . config('Recaptcha')->secretKey . "&response=" . $recaptcha);
-        // $recaptchaData = json_decode($recaptchaResponse);
-        // if (!$recaptchaData->success) {
-        //     // reCAPTCHA validation failed
-        //     return redirect()->to('/')->with('error', 'reCAPTCHA validation failed. Please try again.');
-        // }
-
-        // Continue with the login process
     }
 
-//    public function generateOTP()
-//    {
-////        $totp = new TOTP();
-////        $totp->setLabel('MyApp');
-////        $totp->setIssuer('MyCompany');
-////
-////        $otp = $totp->now();
-//
-//        // Kirim OTP ke pengguna, misalnya melalui SMS atau email
-//    }
-//    public function sendOTPViaSMS()
-//    {
-//        $accountSid = 'your_twilio_account_sid';
-//        $authToken  = 'your_twilio_auth_token';
-//        $twilio = new Client($accountSid, $authToken);
-//
-//        $twilio->messages
-//            ->create(
-//                '+6283263450720',
-//                [
-//                    'from' => '+', // Nomor Twilio Anda
-//                    'body' => 'Your OTP code is 123456' // Isi pesan OTP
-//                ]
-//            );
-//    }
+    public function login_penduduk()
+    {
+        $NIK = $this->request->getPost('nik');
+        $dataPenduduk = $this->penduduk->getByNIK($NIK);
+
+        if ($dataPenduduk) {
+            $otp = rand(100000, 999999);
+            $OTP_TOKEN = $otp;
+            $token = 'H!jJva36Td+5d2o1oC1B';
+            $target = $dataPenduduk['nomor_hp'];
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.fonnte.com/send',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'target' => $target,
+                    'message' => "Kode OTP anda: $OTP_TOKEN",
+                    'url' => 'https://www.google.com',
+                    'filename' => 'filename',
+                    'schedule' => '0',
+                    'typing' => false,
+                    'delay' => '2',
+                    'countryCode' => '62'
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    "Authorization: $token"
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            if (curl_errno($curl)) {
+                $error_msg = curl_error($curl);
+            }
+            curl_close($curl);
+
+            if (isset($error_msg)) {
+                echo $error_msg;
+            }
+
+            // Simpan data penduduk di session
+            session()->set('islogin', true);
+            session()->set('penduduk_data', $dataPenduduk);
+            session()->set('id_desa', $dataPenduduk['id_desa']);
+
+            // Simpan OTP di session beserta timestamp
+            session()->set('OTP_DATA', ['otp' => $OTP_TOKEN, 'timestamp' => time()]);
+
+            return redirect()->to('otp-verification');
+        } else {
+            session()->setFlashdata('errors', 'NIK anda Tidak Terdaftar di dalam sistem !!!');
+            return redirect()->back()->withInput();
+        }
+    }
+
+
+    public function verify()
+    {
+        if (!session()->get('islogin')) {
+            // Jika belum login, kembalikan ke halaman login atau sesuai kebutuhan
+            return redirect()->to('login-penduduk')->with('errors', 'Silakan login terlebih dahulu.');
+        }
+
+        $otpInput = $this->request->getPost('otp_code');
+
+        // Ambil data OTP dan timestamp dari session
+        $otpData = session()->get('OTP_DATA');
+
+        if ($otpData && $otpInput == $otpData['otp']) {
+            // Verifikasi waktu kadaluarsa (contoh: 5 menit)
+            $expirationTime = 5 * 60; // 5 menit dalam detik
+
+            if (time() - $otpData['timestamp'] <= $expirationTime) {
+                // OTP valid dan belum kadaluarsa, lanjutkan proses sesuai kebutuhan
+
+                // Clear session OTP setelah digunakan
+                session()->remove('OTP_DATA');
+
+                // Tambahkan log atau update status verifikasi di database jika diperlukan
+
+                return redirect()->to('surat-online'); // Ganti 'surat-online' dengan halaman setelah verifikasi berhasil
+            } else {
+                // Waktu kadaluarsa, berikan pesan kesalahan
+                session()->setFlashdata('errors', 'Kode OTP sudah kadaluarsa.');
+                return redirect()->back()->withInput();
+            }
+        } else {
+            // OTP tidak valid, berikan pesan kesalahan
+            session()->setFlashdata('errors', 'Kode OTP tidak valid.');
+            return redirect()->back()->withInput();
+        }
+    }
+
+
 
     public function logout()
     {

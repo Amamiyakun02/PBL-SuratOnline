@@ -54,87 +54,134 @@
             <div class="sidebar-menu">
                 <ul class="menu">
                     <li class='sidebar-title'>Menu Utama</li>
-                    <li class="sidebar-item">
-                        <a href="<?= base_url('/dashboard'); ?>" class='sidebar-link'>
-                            <i class="fas fa-tachometer-alt" style="font-size: 20px;"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item  has-sub">
-                        <a class='sidebar-link'>
-                            <i class="fa-regular fa-user" style="font-size: 20px;"></i>
-                            <span>Kelola Pengguna</span>
-                        </a>
-                        <ul class="submenu ">                    
-                            <li>
-                                <a href="<?= base_url('/user'); ?>">Daftar Pengguna</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('/user/tambah'); ?>">Tambah Pengguna</a>
-                            </li>  
-                        </ul>
-                    </li>
-                    <li class="sidebar-item  has-sub">
-                        <a class='sidebar-link'>
-                            <i class="fa-solid fa-users" style="font-size: 20px;"></i>
-                            <span>Kelola Data Penduduk</span>
-                        </a>
-                        
-                        <ul class="submenu ">                  
-                            <li>
-                                <a href="<?= base_url('penduduk'); ?>">Data Penduduk</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('penduduk/tambah'); ?>">Tambah Penduduk</a>
-                            </li>
-                        </ul>                
-                    </li>
-                    <li class="sidebar-item  has-sub">
-                        <a class='sidebar-link'>
-                            <i class="fa-regular fa-file" style="font-size: 20px;"></i>
-                            <span>Kelola Surat</span>
-                        </a>
-                        <ul class="submenu ">
-                            <li>
-                                <a href="<?= base_url('surat') ?>">Daftar Surat</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('surat/create'); ?>">Buat Surat</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('surat/surat-masuk')?>">Surat Masuk</a>
-                            </li>
-                        </ul>
-                    </li>
-                    
-                    <!-- <li class='sidebar-title'>Forms &amp; Tables</li> -->
-                
-                    <li class="sidebar-item  has-sub">
-                        <a class='sidebar-link'>
-                            <i class="fa-solid fa-location-dot" style="font-size: 20px;"></i>
-                            <span>Kelola Data Wilayah</span>
-                        </a> 
-                        <ul class="submenu ">  
-                            <li>
-                                <a href="<?= base_url('kecamatan'); ?>">Kelola Kecamatan</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('kecamatan/tambah'); ?>">Tambah Kecamatan</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('desa'); ?>">Kelola Desa</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('desa/tambah'); ?>">Tambah Desa</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="<?= base_url('/logout'); ?>" class='sidebar-link'>
-                            <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
+                    <?php if(session()->get('role') == 'admin'): ?>
+                        <li class="sidebar-item">
+                            <a href="<?= base_url('/dashboard'); ?>" class='sidebar-link'>
+                                <i class="fas fa-tachometer-alt" style="font-size: 20px;"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a class='sidebar-link'>
+                                <i class="fa-regular fa-user" style="font-size: 20px;"></i>
+                                <span>Kelola Pengguna</span>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="<?= base_url('/user'); ?>">Daftar Pengguna</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('/user/tambah'); ?>">Tambah Pengguna</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a class='sidebar-link'>
+                                <i class="fa-solid fa-users" style="font-size: 20px;"></i>
+                                <span>Kelola Data Penduduk</span>
+                            </a>
+
+                            <ul class="submenu ">
+                                <li>
+                                    <a href="<?= base_url('penduduk'); ?>">Data Penduduk</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('penduduk/tambah'); ?>">Tambah Penduduk</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a class='sidebar-link'>
+                                <i class="fa-regular fa-file" style="font-size: 20px;"></i>
+                                <span>Kelola Surat</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li>
+                                    <a href="<?= base_url('surat') ?>">Daftar Surat</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('surat/create'); ?>">Buat Surat</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('surat/surat-masuk')?>">Surat Masuk</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- <li class='sidebar-title'>Forms &amp; Tables</li> -->
+
+                        <li class="sidebar-item  has-sub">
+                            <a class='sidebar-link'>
+                                <i class="fa-solid fa-location-dot" style="font-size: 20px;"></i>
+                                <span>Kelola Data Wilayah</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li>
+                                    <a href="<?= base_url('kecamatan'); ?>">Kelola Kecamatan</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('kecamatan/tambah'); ?>">Tambah Kecamatan</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('desa'); ?>">Kelola Desa</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('desa/tambah'); ?>">Tambah Desa</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('/logout'); ?>" class='sidebar-link'>
+                                <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    <?php elseif(session()->get('role') == 'admin-desa'): ?>
+                        <li class="sidebar-item">
+                            <a href="<?= base_url('dashboard'); ?>" class='sidebar-link'>
+                                <i class="fas fa-tachometer-alt" style="font-size: 20px;"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a class='sidebar-link'>
+                                <i class="fa-solid fa-users" style="font-size: 20px;"></i>
+                                <span>Kelola Data Penduduk</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li>
+                                    <a href="<?= base_url('penduduk'); ?>">Data Penduduk</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('penduduk/tambah'); ?>">Tambah Penduduk</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a class='sidebar-link'>
+                                <i class="fa-regular fa-file" style="font-size: 20px;"></i>
+                                <span>Kelola Surat</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li>
+                                    <a href="<?= base_url('surat') ?>">Daftar Surat</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('surat/create'); ?>">Buat Surat</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('surat/surat-masuk')?>">Surat Masuk</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('/logout'); ?>" class='sidebar-link'>
+                                <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+                    <?php endif; ?>
                 </ul>
             </div>
             <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

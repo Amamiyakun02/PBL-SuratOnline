@@ -44,36 +44,7 @@
                                                 <div class="card-body">
                                                     <h4 class="mb-0">Dari     : M.Miareza</h4>
                                                     <h4 class="mb-0">No NIK   : 6301301179</h4>
-                                                    <h4 class="mb-0">No Surat : 295626</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div style="margin-top: 100px">
-                                                <button class="btn btn-primary">Lihat</button>
-                                                <button class="btn btn-success">Proses</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="card-content">
-                                                <div class="card-body">
-                                                    <i style="font-size: 150px; color: #FF5B5C" class="fa-regular fa-file"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="card-content">
-                                                <div class="card-body">
-                                                    <h3 class="card-title mb-0">SURAT KETERANGAN TIDAK MAMPU</h3>
-                                                </div>
-                                                <div class="card-body d-flex flex-column">
-                                                    <h4 class="mb-0">Dari     : M.Miareza</h4>
-                                                    <h4 class="mb-0">No NIK   : 6301301179</h4>
-                                                    <h4 class="mb-0">No Surat : 295626</h4>
+<!--                                                    <h4 class="mb-0">No Surat : 295626</h4>-->
                                                 </div>
                                             </div>
                                         </div>

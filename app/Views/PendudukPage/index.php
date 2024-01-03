@@ -1,30 +1,83 @@
 <?= $this->extend('PendudukPage/main'); ?>
 
 <?= $this->section('content'); ?>
-<section class="section">
-    <div class="container">
-
-        <div class="row justify-content-center text-center">
-            <div class="col-md-7 mb-5">
-                <h2 class="section-heading">Daftar Surat</h2>
-                <!--            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere illum obcaecati inventore velit laborum earum.</p>-->
-            </div>
-        </div>
-        <div class="row align-items-stretch" >
-            <div class="col-lg-4 mb-4 mb-lg-0" style="margin-bottom: 5px">
-                <div class="pricing h-100 text-center">
-                    <span>&nbsp;</span>
-                    <h3>Basic</h3>
-                    <ul class="list-unstyled">
-                        <li>Create up to 5 forms</li>
-                        <li>Generate 100 monthly reports</li>
-                    </ul>
-                    <div class="price-cta">
-                        <p><a href="#" class="btn btn-white">Pilih Surat</a></p>
+<!-- ======= Hero Section ======= -->
+<section class="hero-section" id="hero">
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-1 text-center">
+                        <div class="wrap-icon icon-1">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h3 class="mb-3">Surat A</h3>
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-1 text-center">
+                        <div class="wrap-icon icon-1">
+                            <i class="bi bi-bar-chart"></i>
+                        </div>
+                        <h3 class="mb-3">Surat B</h3>
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-1 text-center">
+                        <div class="wrap-icon icon-1">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h3 class="mb-3">Surat C</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-1 text-center">
+                        <div class="wrap-icon icon-1">
+                            <i class="bi bi-bar-chart"></i>
+                        </div>
+                        <h3 class="mb-3">Surat D</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-1 text-center">
+                        <div class="wrap-icon icon-1">
+                            <i class="bi bi-bar-chart"></i>
+                        </div>
+                        <h3 class="mb-3">Surat E</h3>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-1 text-center">
+                        <div class="wrap-icon icon-1">
+                            <i class="bi bi-bar-chart"></i>
+                        </div>
+                        <h3 class="mb-3">Surat F</h3>
+                        <p></p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+        <?php if(!session()->get('islogin')) : ?>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 hero-text-image">
+                    <div class="row">
+                        <div class="col-lg-8 text-center text-lg-start">
+<!--                            <h1 >Lorem</h1>-->
+                            <p class="mb-5">Silahkan Login Terlebih dahulu sebelum melakukan Permohonan Surat Menyurat</p>
+                            <p><a href="<?= base_url('surat-online/login    '); ?>" class="btn btn-outline-white">login</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </section>
+
 <?= $this->endSection(); ?>

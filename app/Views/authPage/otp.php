@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password - Voler Admin Dashboard</title>
+    <title>OTP VERIFICATION</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.css') ?>">
     
     <!-- <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon"> -->
@@ -24,10 +24,11 @@
                         <h3>VERIFIKASI OTP</h3>
                         <!-- <p>Please enter your email to receive password reset link.</p>  -->
                     </div>
-                    <form action="">
+                    <form action="<?= site_url('otp-verify'); ?>" method="post">
+                        <?= csrf_field() ?>
                         <div class="form-group">
                             <label for="first-name-column">Masukkan Kode OTP</label>
-                            <input type="email" id="first-name-column" class="form-control" name="opt_code" placeholder="XXXXXX">
+                            <input type="text" id="first-name-column" class="form-control" name="otp_code" placeholder="XXXXXX">
                         </div>
 
                         <div class="clearfix">

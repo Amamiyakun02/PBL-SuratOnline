@@ -60,4 +60,9 @@ class PendudukModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getByNIK($nik)
+    {
+        return $this->where('nik', $nik)->first();
+    }
 }

@@ -37,4 +37,22 @@ class ArsipModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getByDesa($id)
+    {
+        return $this->where('id_desa', $id)->get()->getResultArray();
+    }
+
+    public function getAllWithDesa()
+    {
+        $this->select('arsip.id as arsip_id,arsip.*, desa.nama as nama_desa')
+            ->join('desa', 'arsip.id_desa = desa.id');
+
+        return $this->get()->getResultArray();
+    }
+    public function dataPengajuan()
+    {
+
+    }
 }
+

@@ -15,11 +15,15 @@ $routes->group('/', function ($routes) {
     $routes->post('login', 'AuthController::login');
     $routes->get('register', 'AuthController::register');
     $routes->post('register_add', 'UserController::register');
-    $routes->get('penduduk-login', 'AuthController::PendudukLogin');
+    $routes->post('penduduk-auth', 'AuthController::login_penduduk');
     $routes->get('set-password', 'AuthController::set_password');
     $routes->get('lupa-password', 'AuthController::LupaPassword');
     $routes->get('otp-verification', 'AuthController::otp');
+    $routes->post('otp-verify', 'AuthController::verify');
     $routes->get('logout', 'AuthController::logout');
+    $routes->get('download/(:num)', 'ArsipController::SuratToPDF/$1');
+    $routes->get('send-link/(:num)', 'Penduduk\HomePendudukController::sendLinkDownload/$1');
+
 });
 
 // Routing dashboard
@@ -47,8 +51,6 @@ $routes->group('surat', function ($routes) {
     $routes->get('surat-masuk', 'ArsipController::surat_masuk');
     $routes->get('surat-desa/(:num)', 'ArsipController::surat/$1');
     $routes->get('delete/(:num)', 'ArsipController::delete/$1');
-    $routes->get('download/(:num)', 'ArsipController::SuratToPDF/$1');
-
 });
 
 // Routing kelola kecamatan
@@ -86,12 +88,22 @@ $routes->group('penduduk', function ($routes) {
 
 $routes->group('surat-online', function ($routes) {
     $routes->get('/','Penduduk\HomePendudukController::index');
-    $routes->get('daftar-surat', 'Penduduk\HomePendudukController::list');
+    $routes->get('login', 'AuthController::PendudukLogin');
+    $routes->get('daftar-surat/(:num)', 'Penduduk\HomePendudukController::list_surat/$1');
     $routes->get('notif', 'Penduduk\HomePendudukController::notif');
+    $routes->get('download-page/(:num)', 'Penduduk\HomePendudukController::download_page/$1');
+    $routes->get('permohonan-page/(:num)', 'Penduduk\HomePendudukController::permohonan_page/$1');
+    $routes->post('permohonan', 'Penduduk\HomePendudukController::permohonan');
+
 });
 
 
 // Routing logout
 $routes->group('logout', function ($routes) {
     $routes->get('/', 'AuthController::logout');
+});
+
+
+$routes->set404Override(function () {
+    throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 });

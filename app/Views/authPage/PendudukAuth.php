@@ -26,8 +26,9 @@
                         <!-- <img src="assets/images/favicon.svg" height="48" class='mb-4'> -->
                         <h3>Surat Online</h3>
                     </div>
-                    <form action="#">
+                    <form action="<?= site_url('/penduduk-auth'); ?>" method="post">
                         <div class="form-group position-relative has-icon-left justify-content-center">
+                            <?= csrf_field(); ?>
                             <label for="nik">NIK</label>
                             <div class="position-relative">
                                 <input type="text" class="form-control" name="nik" id="nik" placeholder="masukkan nomor nik anda">
