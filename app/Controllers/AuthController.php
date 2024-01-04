@@ -6,6 +6,7 @@ use App\Models\KecamatanModel;
 use App\Models\PendudukModel;
 use App\Models\UserModel;
 use App\Models\DesaModel;
+//use ReCaptcha\ReCaptcha;
 
 class AuthController extends BaseController
 {
@@ -61,7 +62,15 @@ class AuthController extends BaseController
         $password = $this->request->getPost('password');
         $userModel = new UserModel();
         $user = $userModel->getUser($username);
-
+        $recaptchaResponse = $this->request->getPost('g-recaptcha-response');
+//
+//        $recaptcha = new Recaptcha('6LespSApAAAAAM2OPYhvVgy_yszkXbrFEa-4Oi--');
+//        $result = $recaptcha->verify($recaptchaResponse);
+//
+//        if (!$result->isSuccess()) {
+//            session()->setFlashdata('pesan', 'Validasi reCAPTCHA gagal. Harap coba lagi.');
+//            return redirect()->to(base_url('/'))->withInput();
+//        }
         $validate = $this->validate([
             'username' => [
                 'label' => 'Username',
@@ -153,7 +162,7 @@ class AuthController extends BaseController
 
             return redirect()->to('otp-verification');
         } else {
-            session()->setFlashdata('errors', 'NIK anda Tidak Terdaftar di dalam sistem !!!');
+            session()->setFlashdata('notFoundNIK', 'NIK anda Tidak Terdaftar di dalam sistem !!!');
             return redirect()->back()->withInput();
         }
     }
@@ -186,12 +195,12 @@ class AuthController extends BaseController
                 return redirect()->to('surat-online'); // Ganti 'surat-online' dengan halaman setelah verifikasi berhasil
             } else {
                 // Waktu kadaluarsa, berikan pesan kesalahan
-                session()->setFlashdata('errors', 'Kode OTP sudah kadaluarsa.');
+                session()->setFlashdata('invalid_otp', 'Kode OTP sudah kadaluarsa.');
                 return redirect()->back()->withInput();
             }
         } else {
             // OTP tidak valid, berikan pesan kesalahan
-            session()->setFlashdata('errors', 'Kode OTP tidak valid.');
+            session()->setFlashdata('invalid_otp', 'Kode OTP tidak valid.');
             return redirect()->back()->withInput();
         }
     }

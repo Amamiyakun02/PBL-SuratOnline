@@ -9,68 +9,61 @@
                 <div class="col-md-4">
                     <div class="feature-1 text-center">
                         <div class="wrap-icon icon-1">
-                            <i class="bi bi-people"></i>
+                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
                         </div>
-                        <h3 class="mb-3">Surat A</h3>
-                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p> -->
+                        <h3 class="mb-3">Surat A (Nama Desa)</h3>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-1 text-center">
                         <div class="wrap-icon icon-1">
-                            <i class="bi bi-bar-chart"></i>
+                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
                         </div>
-                        <h3 class="mb-3">Surat B</h3>
-                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p> -->
+                        <h3 class="mb-3">Surat B (Nama Desa)</h3>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-1 text-center">
                         <div class="wrap-icon icon-1">
-                            <i class="bi bi-people"></i>
+                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
                         </div>
-                        <h3 class="mb-3">Surat C</h3>
-                        <p></p>
+                        <h3 class="mb-3">Surat C (Nama Desa)</h3>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-1 text-center">
                         <div class="wrap-icon icon-1">
-                            <i class="bi bi-bar-chart"></i>
+                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
                         </div>
-                        <h3 class="mb-3">Surat D</h3>
-                        <p></p>
+                        <h3 class="mb-3">Surat D (Nama Desa)</h3>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-1 text-center">
                         <div class="wrap-icon icon-1">
-                            <i class="bi bi-bar-chart"></i>
+                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
                         </div>
-                        <h3 class="mb-3">Surat E</h3>
-                        <p></p>
+                        <h3 class="mb-3">Surat E (Nama Desa)</h3>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-1 text-center">
                         <div class="wrap-icon icon-1">
-                            <i class="bi bi-bar-chart"></i>
+                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
                         </div>
-                        <h3 class="mb-3">Surat F</h3>
+                        <h3 class="mb-3">Surat F (Nama Desa)</h3>
                         <p></p>
                     </div>
                 </div>
             </div>
         </div>
         <?php if(!session()->get('islogin')) : ?>
-
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 hero-text-image">
                     <div class="row">
-                        <div class="col-lg-8 text-center text-lg-start">
-<!--                            <h1 >Lorem</h1>-->
-                            <p class="mb-5">Silahkan Login Terlebih dahulu sebelum melakukan Permohonan Surat Menyurat</p>
+                        <div class="col-12 col-lg-12 text-center text-lg-center">
+                            <p class="mb-3">Silahkan Login Terlebih dahulu sebelum melakukan Permohonan Surat Menyurat</p>
                             <p><a href="<?= base_url('surat-online/login    '); ?>" class="btn btn-outline-white">login</a></p>
                         </div>
                     </div>

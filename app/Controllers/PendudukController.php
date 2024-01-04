@@ -84,12 +84,14 @@ class PendudukController extends BaseController
         $pendudukModel = new PendudukModel(); // Sesuaikan dengan model yang Anda gunakan
         $data['penduduk'] = $pendudukModel->find($id);
         $desaModel = new DesaModel();
-        $data['desa'] = $desaModel->getAllDesa();
+        $kecamatanModel = new KecamatanModel();
+        $data['desa'] = $desaModel->findAll();
+        $data['kecamatan'] = $kecamatanModel->findAll();
         $data['title'] = 'Tambah Penduduk';
         $data['head'] = 'Tambah Penduduk';
 
         // Kirim data penduduk ke view untuk proses edit
-        return view('Admin-Page/Penduduk/edit', $data);
+        return view('adminPage/Penduduk/edit_penduduk', $data);
     }
 
     public function update()
@@ -112,7 +114,6 @@ class PendudukController extends BaseController
             'status_perkawinan' => $this->request->getPost('status_kawin'),
             'pekerjaan' => $this->request->getPost('pekerjaan'),
             'kewarganegaraan' => $this->request->getPost('kewarnanegaraan'),
-            // Tambahkan field lainnya...
         ];
 
         // Simpan perubahan ke database

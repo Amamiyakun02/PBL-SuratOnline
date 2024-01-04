@@ -60,12 +60,12 @@
     <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
     <script>
         // const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
+        const isSmallScreen = window.matchMedia('(max-width: 823.5px)').matches;
 
         tinymce.init({
             selector: 'textarea#suratContent',
             width: 800,
-            height: 1123,
+            height: 923,
             plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion',
             theme_advanced_buttons3_add : "preview",
             plugin_preview_width : "800",

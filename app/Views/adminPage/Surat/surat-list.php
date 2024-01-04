@@ -18,36 +18,32 @@
                 </div>
             </div>
         </div>
-        <section id="groups">
-            <div class="row match-height">
+        <section id="bg-variants">
+            <div class="row">
                 <div class="col-12 mt-3 mb-1">
-                    <h4 class="section-title text-uppercase">Surat</h4>
+                    <h4 class="section-title text-uppercase">Daftar Surat</h4>
                 </div>
             </div>
-            <div class="row match-height">
-                <div class="col-12">
-                    <div class="card-group">
-                        <?php foreach($dataSurat as $surat): ?>
-                        <div class="col-6 col-md-3 mb-3">
 
-                            <div class="card">
-                                <div class="card-content" style="text-align: center;">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-0"><?= $surat['nama_surat']; ?></h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <i style="font-size: 200px; color: #FF5B5C" class="fa-regular fa-file"></i>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="<?= base_url('surat/surat-desa/'. $surat['id']); ?>" class="btn btn-info">Lihat</a>
-                                        <a href="<?= base_url('surat/delete/'. $surat['id']); ?>" class="btn btn-danger">Hapus</a>
-                                    </div>
-                                </div>
+            <div class="row">
+                <?php foreach($dataSurat as $surat): ?>
+                <div class="col-xl-4 col-sm-6 col-12">
+                    <div class="card text-center">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h4 class="card-title mb-0"><?= $surat['nama_surat']; ?></h4>
+                            </div>
+                            <div class="card-body">
+                                <i style="font-size: 175px; color: #5bb2ff" class="fa-regular fa-file"></i>
+                            </div>
+                            <div class="card-body">
+                                <a href="<?= base_url('surat/surat-desa/'. $surat['id']); ?>" class="btn btn-info">Lihat</a>
+                                <a href="<?= base_url('surat/delete/'. $surat['id']); ?>" class="btn btn-danger">Hapus</a>
                             </div>
                         </div>
-                        <?php endforeach; ?>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
         </section>
     </div>

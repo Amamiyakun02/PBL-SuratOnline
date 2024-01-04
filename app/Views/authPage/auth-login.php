@@ -39,21 +39,21 @@
                         <h3>Login</h3>
                     </div>
 
-                    <?php if (!empty(session()->getFlashdata('error'))) : ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?= session()->getFlashdata('error'); ?>
+                    <?php if (!empty(session()->getFlashdata('errors'))) : ?>
+                        <div id="error-alert" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                            <?= session()->getFlashdata('errors'); ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if (session()->getFlashdata('logout')) : ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div id="logout-alert" class="alert alert-secondary alert-dismissible fade show text-center" role="alert">
                             <?= session()->getFlashdata('logout'); ?>
                         </div>
                     <?php endif; ?>
 
-                    <?php if (!empty(session()->getFlashdata('errors'))) : ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?= session()->getFlashdata('errors'); ?>
+                    <?php if (!empty(session()->getFlashdata('register'))) : ?>
+                        <div id="sucess-alert" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                            <?= session()->getFlashdata('register'); ?>
                         </div>
                     <?php endif; ?>
                     <form id="contactForm" method="post" action="<?= base_url('/login')?>">
@@ -89,10 +89,9 @@
                             </div>
                         </div>
                         <div class="clearfix">
-                            <!-- <input type="hidden" id="recaptcha_response" name="recaptcha_response" value=""> -->
+<!--                            <div class="g-recaptcha" style="margin-top:10px;" data-sitekey="6LfkXxIpAAAAAMnOWt2UGO5mkrXKmjEg34asMfg_"></div>-->
                             <button type="submit" id="login" class="btn btn-primary float-right">
                            login</button>
-                                <!-- <button type="submit" class="btn btn-primary float-right">Login</button> -->
                         </div>
                     </form>
                 </div>
@@ -121,6 +120,40 @@
         inputs.forEach(input => {
             input.addEventListener("focus", addcl);
             input.addEventListener("blur", remcl);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var alertElement = document.getElementById('logout-alert');
+                alertElement.style.transition = 'opacity 0.5s';
+                alertElement.style.opacity = '0';
+
+                setTimeout(function () {
+                    alertElement.style.display = 'none';
+                }, 500); // 0.5 detik setelah transisi selesai
+            }, 3000); // 3 detik setelah halaman dimuat
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var alertElement = document.getElementById('error-alert');
+                alertElement.style.transition = 'opacity 0.5s';
+                alertElement.style.opacity = '0';
+
+                setTimeout(function () {
+                    alertElement.style.display = 'none';
+                }, 500); // 0.5 detik setelah transisi selesai
+            }, 3000); // 3 detik setelah halaman dimuat
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var alertElement = document.getElementById('sucess-alert');
+                alertElement.style.transition = 'opacity 0.5s';
+                alertElement.style.opacity = '0';
+
+                setTimeout(function () {
+                    alertElement.style.display = 'none';
+                }, 500); // 0.5 detik setelah transisi selesai
+            }, 3000); // 3 detik setelah halaman dimuat
         });
     </script>
     <script src="<?= base_url() ?>assets/js/app.js"></script>

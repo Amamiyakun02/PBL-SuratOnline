@@ -8,14 +8,6 @@
                 <div class="col-12">
                     <h3 class="text-center"><?= $nama_surat; ?></h3>
                 </div>
-<!--                <div class="col-12 col-md-6 order-md-2 order-first">-->
-<!--                    <nav aria-label="breadcrumb" class='breadcrumb-header'>-->
-<!--                        <ol class="breadcrumb">-->
-<!--                            <li class="breadcrumb-item"><a href="--><?php //base_url('/dashboard') ?><!--">Surat</a></li>-->
-<!--                            <li class="breadcrumb-item active" aria-current="page">Buat Surat</li>-->
-<!--                        </ol>-->
-<!--                    </nav>-->
-<!--                </div>-->
             </div>
         </div>
         <section class="section row d-flex justify-content-center align-items-center">

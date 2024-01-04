@@ -47,10 +47,13 @@ $routes->group('surat', function ($routes) {
     $routes->get('/', 'ArsipController::index');
     $routes->get('create', 'ArsipController::create');
     $routes->post('save', 'ArsipController::insert');
+    $routes->post('insert_proses', 'ArsipController::insert_proses');
 //  $routes->get('daftar-surat', 'ArsipController::list');
     $routes->get('surat-masuk', 'ArsipController::surat_masuk');
     $routes->get('surat-desa/(:num)', 'ArsipController::surat/$1');
     $routes->get('delete/(:num)', 'ArsipController::delete/$1');
+    $routes->get('proses/(:num)', 'ArsipController::proses/$1');
+
 });
 
 // Routing kelola kecamatan

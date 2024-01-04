@@ -42,16 +42,13 @@ class UserController extends BaseController
     public function register()
     {
         $data = [];
-
-        // if ($this->request->getVar() === 'post') {
             $rules = [
                 'username' => 'required|min_length[3]|is_unique[users.username]|max_length[100]',
                 'email' => 'required|valid_email|is_unique[users.email]',
-                'nomor_telpon' => 'required|min_length[10]|max_length[20]',
+                'nomor_telpon' => 'required|min_length[10]|max_length[15]',
                 'password' => 'required|min_length[8]|max_length[255]',
             ];
-
-//            if ($this->validate($rules)) {
+            if ($this->validate($rules)) {
                 $model = new UserModel();
                 $password = $this->request->getPost('password');
                 $newData = [
@@ -64,14 +61,14 @@ class UserController extends BaseController
                 ];
                 $model->save($newData);
 
-                // Sesuaikan alur navigasi sesuai kebutuhan aplikasi Anda.
+                session()->setFlashdata('register', 'Registrasi Berhasil');
                 return redirect()->to('/')->with('success', 'User registered successfully');
 //            } else {
 //                $data['validation'] = $this->validator;
 //            }
-        // }
-
-//        return redirect()->to('/register');
+         }
+        session()->setFlashdata('error_reg', 'Registrasi Gagal');
+        return redirect()->to('/register');
     }
     public function insert()
     {
@@ -98,7 +95,9 @@ class UserController extends BaseController
             $userModel->save($newData);
 
             // Sesuaikan alur navigasi sesuai kebutuhan aplikasi Anda.
-            return redirect()->to('user')->with('success', 'User registered successfully');
+        session()->setFlashdata('success_add_user', 'Data Berhasil di Tambahkan');
+
+        return redirect()->to('user')->with('success', 'User registered successfully');
 //            } else {
 //                $data['validation'] = $this->validator;
 //            }

@@ -26,6 +26,11 @@
                         <!-- <img src="assets/images/favicon.svg" height="48" class='mb-4'> -->
                         <h3>Surat Online</h3>
                     </div>
+                    <?php if (!empty(session()->getFlashdata('notFoundNIK'))) : ?>
+                    <div id="auth_penduduk_alert" class="alert alert-danger text-center" role="alert">
+                        <?= session()->getFlashdata('notFoundNIK'); ?>
+                    </div>
+                    <?php endif; ?>
                     <form action="<?= site_url('/penduduk-auth'); ?>" method="post">
                         <div class="form-group position-relative has-icon-left justify-content-center">
                             <?= csrf_field(); ?>
@@ -66,6 +71,17 @@
             }
 
             event.target.value = inputValue; // Set the updated value back to the input
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var alertElement = document.getElementById('auth_penduduk_alert');
+                alertElement.style.transition = 'opacity 0.5s';
+                alertElement.style.opacity = '0';
+
+                setTimeout(function () {
+                    alertElement.style.display = 'none';
+                }, 500); // 0.5 detik setelah transisi selesai
+            }, 3000); // 3 detik setelah halaman dimuat
         });
     </script>
 </body>

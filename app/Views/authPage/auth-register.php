@@ -30,7 +30,6 @@
 
 <body>
     <div id="auth">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-7 col-sm-12 mx-auto">
@@ -40,6 +39,11 @@
                                 <!-- <img src="assets/images/favicon.svg" height="48" class='mb-4'> -->
                                 <h3>Form Registrasi</h3>
                             </div>
+                            <?php if (!empty(session()->getFlashdata('error_reg'))) : ?>
+                                <div id="error_register" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                                    <?= session()->getFlashdata('error_reg'); ?>
+                                </div>
+                            <?php endif; ?>
                             <form class="form form-horizontal" action="/register_add" method="post">
                                 <?= csrf_field() ?>
                                 <div class="form-body">
@@ -116,6 +120,17 @@
             }
 
             event.target.value = inputValue; // Set the updated value back to the input
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var alertElement = document.getElementById('error-register');
+                alertElement.style.transition = 'opacity 0.5s';
+                alertElement.style.opacity = '0';
+
+                setTimeout(function () {
+                    alertElement.style.display = 'none';
+                }, 500); // 0.5 detik setelah transisi selesai
+            }, 3000); // 3 detik setelah halaman dimuat
         });
     </script>
 </body>

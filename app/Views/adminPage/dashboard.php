@@ -67,7 +67,7 @@
                 </a>
             </div>
             <div class="col-12 col-md-3">
-                <a href="<?= base_url('/wilayah'); ?>">
+                <a href="#">
                     <div class="card card-statistic">
                         <div class="card-body p-0">
                             <div class="d-flex flex-column">

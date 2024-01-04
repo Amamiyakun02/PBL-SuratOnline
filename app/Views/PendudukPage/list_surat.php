@@ -7,7 +7,7 @@
         <div class="row justify-content-center text-center">
             <div class="col-md-7 mb-5">
                 <h2 class="section-heading">Daftar Surat</h2>
-                <!--            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere illum obcaecati inventore velit laborum earum.</p>-->
+                <h3 class="section-heading">Desa Tambang Ulang</h3>
             </div>
         </div>
         <div class="row align-items-stretch" >
@@ -20,7 +20,7 @@
                         <li class="no_dis">.</li>
                         <li class="no_dis">.</li>
                         <li class="no_dis">.</li>
-                        </ul>
+                    </ul>
                     <div class="price-cta">
                         <p><a href="<?= base_url('surat-online/permohonan-page/'. $surat['id']); ?>" class="btn btn-white">Pilih Surat</a></p>
                     </div>

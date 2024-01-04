@@ -44,7 +44,6 @@
                                                 <div class="card-body">
                                                     <h4 class="mb-0">Dari     : M.Miareza</h4>
                                                     <h4 class="mb-0">No NIK   : 6301301179</h4>
-<!--                                                    <h4 class="mb-0">No Surat : 295626</h4>-->
                                                 </div>
                                             </div>
                                         </div>

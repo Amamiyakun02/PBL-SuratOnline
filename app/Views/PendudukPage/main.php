@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/fontawesome-6.5.1/css/fontawesome.css"">
     <link href="<?= base_url() ?>assets-penduduk/vendor/aos/aos.css" rel="stylesheet">
     <link href="<?= base_url() ?>assets-penduduk/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets-penduduk/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets-penduduk/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<!--    <link href="--><?php //= base_url() ?><!--assets-penduduk/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">-->
+<!--    <link href="--><?php //= base_url() ?><!--assets-penduduk/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">-->
     <link href="<?= base_url() ?>assets-penduduk/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
@@ -72,19 +72,17 @@
                     <li><a href="<?= base_url('surat-online/daftar-surat/'. $dataPenduduk['id_desa']); ?>">Daftar Surat</a></li>
                 <?php endif; ?>
 
-                <li><a href="#"><span>Tentang</span></a></li>
+<!--                <li><a href="#"><span>Tentang</span></a></li>-->
 
                 <?php if(!session()->get('islogin')) : ?>
                     <!-- Hanya tampilkan login jika belum login -->
                     <li><a href="<?= site_url('/') ?>">Login sebagai Admin</a></li>
                 <?php else: ?>
                     <li><a href="#"><?= $dataPenduduk['Nama']; ?></a></li>
-
                 <?php endif; ?>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
-
     </div>
 </header>
 <!-- End Header -->
@@ -97,16 +95,9 @@
 <footer class="footer" role="contentinfo">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 mb-4 mb-md-0">
-                    <h3>Tentang</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam aperiam
-                    dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi.</p>
-                <p class="social">
-                    <a href="#"><span class="bi bi-twitter"></span></a>
-                    <a href="#"><span class="bi bi-facebook"></span></a>
-                    <a href="#"><span class="bi bi-instagram"></span></a>
-                    <a href="#"><span class="bi bi-linkedin"></span></a>
-                </p>
+            <div class=" text-center col-md-12 mb-4 mb-md-0">
+                <h3>SURAT DINAMIS</h3>
+                <h5>Project Based Learning</h5>
             </div>
         </div>
     </div>
@@ -115,6 +106,7 @@
 <!-- Template Main JS File -->
 <script src="<?= base_url() ?>assets-penduduk/js/main.js"></script>
 <!-- Vendor JS Files -->
+<script src="<?= base_url() ?>assets/fonts/fontawesome-6.5.1/js/all.js"></script>
 <script src="<?= base_url() ?>assets-penduduk/vendor/aos/aos.js"></script>
 <script src="<?= base_url() ?>assets-penduduk/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url() ?>assets-penduduk/vendor/swiper/swiper-bundle.min.js"></script>

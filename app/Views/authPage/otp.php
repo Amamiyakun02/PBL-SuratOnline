@@ -24,6 +24,11 @@
                         <h3>VERIFIKASI OTP</h3>
                         <!-- <p>Please enter your email to receive password reset link.</p>  -->
                     </div>
+                    <?php if (!empty(session()->getFlashdata('invalid_otp'))) : ?>
+                        <div id="otpInvalid" class="alert alert-danger text-center" role="alert">
+                            <?= session()->getFlashdata('invalid_otp'); ?>
+                        </div>
+                    <?php endif; ?>
                     <form action="<?= site_url('otp-verify'); ?>" method="post">
                         <?= csrf_field() ?>
                         <div class="form-group">
@@ -42,10 +47,21 @@
 </div>
 
     </div>
-    <script src="assets/js/feather-icons/feather.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    
-    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var alertElement = document.getElementById('otpInvalid');
+                alertElement.style.transition = 'opacity 0.5s';
+                alertElement.style.opacity = '0';
+
+                setTimeout(function () {
+                    alertElement.style.display = 'none';
+                }, 500); // 0.5 detik setelah transisi selesai
+            }, 3000); // 3 detik setelah halaman dimuat
+        });
+    </script>
+    <script src="<?= base_url() ?>assets/js/app.js"></script>
+    <script src="<?= base_url() ?>assets/js/main.js"></script>
 </body>
 
 </html>

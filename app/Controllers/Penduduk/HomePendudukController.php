@@ -63,7 +63,6 @@ class HomePendudukController extends BaseController
         if (empty($dataSurat)) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
-//        dd($dataSurat);
         $data = [
             'id_surat' => $dataSurat['id'],
             'nama_surat' => $dataSurat['nama_surat'],
@@ -83,7 +82,7 @@ class HomePendudukController extends BaseController
         $secretKey = 'amamiyakun';
         $stringToHash = $suratId . $secretKey;
         $hashedValue = hash('sha256', $stringToHash);
-        $originalURL = 'https://batuah.tech';
+        $originalURL = 'https://surat-dinamis-tala.my.id';
 
 // Tambahkan hash ke URL
         $secureURL = $originalURL . '?hash=' . $hashedValue;
