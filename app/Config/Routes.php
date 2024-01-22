@@ -23,7 +23,6 @@ $routes->group('/', function ($routes) {
     $routes->get('logout', 'AuthController::logout');
     $routes->get('download/(:num)', 'ArsipController::SuratToPDF/$1');
     $routes->get('send-link/(:num)', 'Penduduk\HomePendudukController::sendLinkDownload/$1');
-
 });
 
 // Routing dashboard
@@ -48,12 +47,10 @@ $routes->group('surat', function ($routes) {
     $routes->get('create', 'ArsipController::create');
     $routes->post('save', 'ArsipController::insert');
     $routes->post('insert_proses', 'ArsipController::insert_proses');
-//  $routes->get('daftar-surat', 'ArsipController::list');
     $routes->get('surat-masuk', 'ArsipController::surat_masuk');
     $routes->get('surat-desa/(:num)', 'ArsipController::surat/$1');
     $routes->get('delete/(:num)', 'ArsipController::delete/$1');
     $routes->get('proses/(:num)', 'ArsipController::proses/$1');
-
 });
 
 // Routing kelola kecamatan
@@ -76,7 +73,6 @@ $routes->group('desa', function ($routes) {
     $routes->get('delete/(:num)', 'DesaController::delete/$1');
 });
 
-
 // Routing kelola penduduk
 $routes->group('penduduk', function ($routes) {
     $routes->get('/', 'PendudukController::index');
@@ -85,9 +81,7 @@ $routes->group('penduduk', function ($routes) {
     $routes->get('edit/(:num)', 'PendudukController::edit/$1');
     $routes->post('update', 'PendudukController::update');
     $routes->get('delete/(:num)', 'PendudukController::delete/$1');
-
 });
-
 
 $routes->group('surat-online', function ($routes) {
     $routes->get('/','Penduduk\HomePendudukController::index');
@@ -99,7 +93,6 @@ $routes->group('surat-online', function ($routes) {
     $routes->post('permohonan', 'Penduduk\HomePendudukController::permohonan');
 
 });
-
 
 // Routing logout
 $routes->group('logout', function ($routes) {

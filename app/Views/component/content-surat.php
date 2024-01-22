@@ -1,7 +1,21 @@
 <?= $this->extend('layouts/main'); ?>
 
 <?= $this->section('main-content'); ?>
-
+<?php
+    $nik = '';
+    $nama = '';
+    $tempat_lahir = '';
+    $nomor_hp = '';
+    $tanggal_lahir = '';
+    $jenis_kelamin = '';
+    $alamat = '';
+    $rt = '';
+    $rw = '';
+    $agama = '';
+    $pekerjaan = '';
+    $status = '';
+    $kewarganegaraan = '';
+?>
     <div class="main-content container-fluid">
         <div class="page-title">
             <div class="container">
@@ -16,7 +30,7 @@
                     <img src="<?= base_url('assets/images/kop_surat/'.$kop_path); ?>" alt="KOP Surat" style="width: 19cm; margin:0 0 0 0">
                 </div>
                 <div class="surat-content">
-                    <?= $content; ?>
+                    <?php eval("?>$content<?php "); ?>
                 </div>
             </div>
             <div class="container" style="margin-top: 10px">

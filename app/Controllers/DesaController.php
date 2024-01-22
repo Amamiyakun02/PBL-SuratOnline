@@ -10,7 +10,6 @@ class DesaController extends BaseController
 {
     public function index(): string
     {
-
         $desa = new DesaModel();
         $dataDesa = $desa->findAll();
         $data = [
@@ -41,14 +40,13 @@ class DesaController extends BaseController
     }
     
     public function insert(){
-        $Data = [];
-        
+
         $rules = [
             'nama' => 'required|min_length[3]|is_unique[desa.nama]|max_length[100]',
             'kodepos' => 'required|min_length[5]|max_length[6]',
             'kode_wilayah' => 'required|min_length[6]|max_length[20]',
         ];
-//        if($this->validate($rules)){
+
             $desa = new DesaModel();
             $newData = [
                 'nama' => $this->request->getPost('desa'),
@@ -59,11 +57,7 @@ class DesaController extends BaseController
             $desa->save($newData);
 
             return redirect()->to('desa')->with('success', 'Desa berhasil ditambahkan');
-//        }
-//        else{
-//            $Data['validation'] = $this->validator;
-//        }
-//        return redirect()->to('desa/tambah');
+
     }
     public function edit($id){
         $DataDesa = new DesaModel();
@@ -87,35 +81,28 @@ class DesaController extends BaseController
             'desa' => 'required',
             'kodepos' => 'required|numeric',
             'kode_wilayah' => 'required',
-            'kecamatan' => 'required'
         ];
-    
         // Set validation rules
         $validation->setRules($validationRules);
     
-        // Run validation
-        if ($validation->withRequest($this->request)->run()) {
-            // Validation passed
+//        if ($validation->withRequest($this->request)->run()) {
             $desa = new DesaModel();
             $newData = [
                 'nama' => $this->request->getPost('desa'),
                 'kode_pos' => $this->request->getPost('kodepos'),
-                'kode_wilayah' => $this->request->getPost('kode_wilayah'),
-                'id_kecamatan' => $this->request->getPost('kecamatan')
+                'kode_wilayah' => $this->request->getPost('kode_wilayah')
+
             ];
-            
-            // Perform the update only if the record exists
+
             if ($desa->find($this->request->getPost('id'))) {
                 $desa->update($this->request->getPost('id'), $newData);
+                session()->setFlashdata('edit_success', 'Data Berhasil di Perbarui !!!');
                 return redirect()->to('/desa');
+
             } else {
                 // Handle the case where the record does not exist
                 return redirect()->back()->with('error', 'Record not found');
             }
-        } else {
-            // Validation failed, redirect back with errors
-            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
-        }
     }
 
     public function delete($id){

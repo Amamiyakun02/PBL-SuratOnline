@@ -9,14 +9,16 @@ use App\Models\PendudukModel;
 
 class PendudukController extends BaseController
 {
-
+    protected $kecamatan;
+    protected $desa;
+    public function __construct()
+    {
+        $this->kecamatan = new KecamatanModel();
+        $this->desa = new DesaModel();
+    }
+    
     public function index()
     {
-        // $data = [
-        //     'title' => 'Data Penduduk',
-        //     'head' => 'Data Penduduk'
-        // ];
-
         $data['title'] = 'Daftar Penduduk';
         $data['head'] = 'Daftar Penduduk';
         $pendudukModel = new PendudukModel();

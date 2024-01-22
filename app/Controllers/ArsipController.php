@@ -36,7 +36,6 @@ class ArsipController extends BaseController
         return view('adminPage/Surat/form-surat', $page);
     }
 
-
     public function insert()
     {
 //        $Data = [];
@@ -46,20 +45,20 @@ class ArsipController extends BaseController
         // Pindahkan file ke folder uploads
         $kop->move(ROOTPATH . 'public/assets/images/kop_surat');
 
-        // Simpan informasi ke database (sesuaikan dengan model dan database Anda)
-//        $desa_id =
+        $desa_id = 1;
+        $content_dinamis = $this->createDynamicVariable($content_surat);
 
+/*        eval("?>$content_dinamis<?php ");*/
         $newData = [
             'nama_surat' => $this->request->getPost('nama_surat'),
             'path_kop_surat' => $kop->getName(),
-            'content_surat' => $content_surat,
-            'id_desa' => 1
+            'content_surat' => $content_dinamis,
+            'id_desa' => $desa_id,
         ];
         $this->arsip->save($newData);
         return redirect()->to('surat')->with('message','Surat Ditambahkan');
 //        return redirect()->to('surat/editor');
     }
-
 
     public function surat_masuk(): string
     {
@@ -74,27 +73,22 @@ class ArsipController extends BaseController
     public function surat($id) : string
     {
         $dataSurat = $this->arsip->find($id);
-//        dd($dataSurat);
         $data = [
             'title' => $dataSurat['nama_surat'],
             'nama_surat' => $dataSurat['nama_surat'],
             'kop_path' => $dataSurat['path_kop_surat'],
             'content' => $dataSurat['content_surat']
         ];
-//        dd($data);
         return view('component/content-surat',$data);
     }
 
     public function delete($id)
     {
         $this->arsip->delete($id);
-
-        // Redirect atau tindakan lain setelah penghapusan data
         return redirect()->to('/surat');
-
     }
 
-    public function SuratToPDF($id = 6){
+    public function SuratToPDF($id){
         $pdf_convert = new Dompdf();
         $arsip = $this->arsip->find($id);
         $kop_path = $arsip['path_kop_surat'];
@@ -123,10 +117,21 @@ class ArsipController extends BaseController
         $pdf_convert->stream($filename);
     }
 
-// Fungsi untuk mendapatkan nama desa berdasarkan id_desa
+    private function createDynamicVariable($args)
+    {
+        $pattern = '/\[(.*?)\]/';
+        $replacement = '<?php $$1 ?>';
+        return preg_replace_callback(
+            $pattern,
+            function ($matches) {
+                // $matches[1] berisi teks di dalam kurung siku
+                return "<?php echo \$$matches[1]; ?>";
+            },
+            $args
+        );
+    }
     private function getNamaDesaById($id_desa) {
          $desa = $this->desa->find($id_desa);
          return $desa['nama'];
     }
-
 }

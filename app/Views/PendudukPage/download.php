@@ -1,6 +1,22 @@
 <?= $this->extend('PendudukPage/main'); ?>
 
 <?= $this->section('content'); ?>
+
+<?php
+$nik = $penduduk['NIK'];
+$nama =  $penduduk['Nama'];
+$tempat_lahir =  $penduduk['tempat_lahir'];
+$nomor_hp =  $penduduk['nomor_hp'];
+$tanggal_lahir =  $penduduk['tanggal_lahir'];
+$jenis_kelamin =  $penduduk['jenis_kelamin'];
+$alamat =  $penduduk['alamat'];
+$rt =  $penduduk['RT'];
+$rw =  $penduduk['RW'];
+$agama =  $penduduk['agama'];
+$pekerjaan =  $penduduk['pekerjaan'];
+$status =  $penduduk['status_perkawinan'];
+$kewarganegaraan =  $penduduk['kewarganegaraan'];
+?>
     <div class="main-content container-fluid">
         <section class="section row d-flex justify-content-center align-items-center">
             <div class="page-title">
@@ -13,7 +29,7 @@
                     <img src="<?= base_url('assets/images/kop_surat/'.$kop_path); ?>" alt="KOP Surat" style="width: 19cm; margin:0 0 0 0">
                 </div>
                     <div class="surat-content" style="color: black;" >
-                        <?= $content; ?>
+                        <?php eval("?>$content<?php "); ?>
                     </div>
             </div>
             <div class="container" style="margin-top: 10px">

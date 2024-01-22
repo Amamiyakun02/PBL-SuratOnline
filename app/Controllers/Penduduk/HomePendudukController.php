@@ -19,9 +19,11 @@ class HomePendudukController extends BaseController
     public function index(): string
     {
         $id = session()->get('id_desa');
-        $data = [];
+        $data = [
+            'surat' => $this->arsip->findAll(),
+        ];
         $data['title'] = 'Surat Desa';
-//        $data['desa'] = $this->desa->find($id);
+        $data['desa'] = $this->desa->find($id);
         return view('PendudukPage/index',$data);
     }
 
@@ -43,12 +45,15 @@ class HomePendudukController extends BaseController
     }
     public function download_page($id): string
     {
+
         $dataSurat = $this->arsip->find($id);
         if (empty($dataSurat)) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
-//        dd($dataSurat);
+        $datapenduduk = session()->get('penduduk_data');
+        $id_penduduk = $datapenduduk['id'];
         $data = [
+            'penduduk' => $this->penduduk->find($id_penduduk),
             'id_surat' => $dataSurat['id'],
             'nama_surat' => $dataSurat['nama_surat'],
             'kop_path' => $dataSurat['path_kop_surat'],
@@ -75,7 +80,7 @@ class HomePendudukController extends BaseController
 
     public function sendLinkDownload($id)
     {
-        $suratId = 11;
+        $suratId = 13;
         $data_pengajuan['status_pengajuan'] = 'disetujui';
         $this->pengajuan->update($id,$data_pengajuan);
 
@@ -84,7 +89,6 @@ class HomePendudukController extends BaseController
         $hashedValue = hash('sha256', $stringToHash);
         $originalURL = 'https://surat-dinamis-tala.my.id';
 
-// Tambahkan hash ke URL
         $secureURL = $originalURL . '?hash=' . $hashedValue;
         $pendudukData = $this->penduduk->find($id);
         $token = 'H!jJva36Td+5d2o1oC1B';

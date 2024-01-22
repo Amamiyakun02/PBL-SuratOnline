@@ -42,11 +42,17 @@ class Filters extends BaseConfig
             'csrf' => [
                 'except' => [
                     '/kecamatan/save',
+                    '/kecamatan/update',
                     '/desa/save',
+                    '/desa/update',
                     '/surat/save',
                     '/penduduk/save',
-                    'user/save',
+                    '/penduduk/update',
+                    '/user/save',
+                    '/user/update',
                     '/getDesa',
+                    '/surat-online/penduduk-auth',
+
                 ]
             ],
         ],

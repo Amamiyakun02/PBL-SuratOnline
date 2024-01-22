@@ -103,7 +103,7 @@
                                     <a href="<?= base_url('surat/create'); ?>">Buat Surat</a>
                                 </li>
                                 <li>
-                                    <a href="<?= base_url('surat/surat-masuk')?>">Surat Masuk</a>
+                                    <a href="<?= base_url('surat/surat-masuk')?>">Permohonan</a>
                                 </li>
                             </ul>
                         </li>

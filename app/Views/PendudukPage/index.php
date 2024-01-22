@@ -6,55 +6,16 @@
     <section class="section">
         <div class="container">
             <div class="row">
+                <?php foreach ($surat as $item): ?>
                 <div class="col-md-4">
                     <div class="feature-1 text-center">
                         <div class="wrap-icon icon-1">
                             <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
                         </div>
-                        <h3 class="mb-3">Surat A (Nama Desa)</h3>
+                        <h3 class="mb-3"><?= $item['nama_surat'] ?></h3>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-1 text-center">
-                        <div class="wrap-icon icon-1">
-                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
-                        </div>
-                        <h3 class="mb-3">Surat B (Nama Desa)</h3>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-1 text-center">
-                        <div class="wrap-icon icon-1">
-                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
-                        </div>
-                        <h3 class="mb-3">Surat C (Nama Desa)</h3>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-1 text-center">
-                        <div class="wrap-icon icon-1">
-                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
-                        </div>
-                        <h3 class="mb-3">Surat D (Nama Desa)</h3>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-1 text-center">
-                        <div class="wrap-icon icon-1">
-                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
-                        </div>
-                        <h3 class="mb-3">Surat E (Nama Desa)</h3>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-1 text-center">
-                        <div class="wrap-icon icon-1">
-                            <i style="color: #fff; font-size:75px" class="fa-solid fa-file"></i>
-                        </div>
-                        <h3 class="mb-3">Surat F (Nama Desa)</h3>
-                        <p></p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
         <?php if(!session()->get('islogin')) : ?>

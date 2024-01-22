@@ -167,7 +167,6 @@ class AuthController extends BaseController
         }
     }
 
-
     public function verify()
     {
         if (!session()->get('islogin')) {

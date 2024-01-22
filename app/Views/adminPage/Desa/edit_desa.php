@@ -28,7 +28,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-vertical" action="/desa/update" method="post">
+                            <form class="form form-vertical" action="<?= base_url('desa/update'); ?>" method="post">
                                 <?php csrf_field(); ?>
                                 <div class="form-body">
                                     <div class="row">
@@ -54,17 +54,17 @@
                                                 placeholder="Kode Wilayah">
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                            <label for="kode-wilayah">Kecamatan</label>
-                                                <select id="Kecamatan" name="Kecamatan" class="form-select" value="<?= $desa['id_kecamatan']; ?>">
-                                                    <option value="">Pilih Kecamatan</option>
-                                                <?php foreach ($kecamatan as $item) : ?>
-                                                    <option value="<?= $item['id']; ?>"><?= $item['nama']; ?></option>
-                                                <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
+<!--                                        <div class="col-12">-->
+<!--                                            <div class="form-group">-->
+<!--                                            <label for="kode-wilayah">Kecamatan</label>-->
+<!--                                                <select id="Kecamatan" name="Kecamatan" class="form-select" value="--><?php //= $desa['id_kecamatan']; ?><!--">-->
+<!--                                                    <option value="">Pilih Kecamatan</option>-->
+<!--                                                --><?php //foreach ($kecamatan as $item) : ?>
+<!--                                                    <option value="--><?php //= $item['id']; ?><!--">--><?php //= $item['nama']; ?><!--</option>-->
+<!--                                                --><?php //endforeach; ?>
+<!--                                                </select>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <div class="col-12 d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary mr-1 mb-1">Simpan</button>
                                             <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
